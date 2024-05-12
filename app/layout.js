@@ -5,13 +5,12 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: "Stay Swift",
+    title: "SuiteSpot",
     description: "Hotel booking made easy",
     image: "/logo.png",
     url: "https://stayswift.com",
     type: "website",
     keywords: ["hotels", "booking", "travel"],
-    
 };
 
 export default function RootLayout({ children }) {

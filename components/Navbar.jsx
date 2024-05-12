@@ -10,7 +10,7 @@ const Navbar = () => {
                     src={Logo}
                     alt="Stay Swift Logo"
                     width={130}
-                    height={180}
+                    height={200}
                 />
             </Link>
 
@@ -32,7 +32,7 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                    <Link href="/login" class="login">
+                    <Link href="/login" className="login">
                         Login
                     </Link>
                 </li>
