@@ -1,13 +1,29 @@
 import mongoose from "mongoose";
 
-export async function dbConnect() {
-    try {
-        const connection = await mongoose.connect(
-            process.env.MONGODB_CONNECTION_STRING
+const MONGO_URI = process.env.MONGODB_CONNECTION_STRING;
+const cached = {};
+
+export async function connectDB() {
+    if (!MONGO_URI) {
+        throw new Error(
+            "Please define the MONGO_URI environment variable inside .env"
         );
-        console.log("Connected to MongoDB!");
-        return connection;
-    } catch (error) {
-        console.log(error);
     }
+    if (cached.connection) {
+        return cached.connection;
+    }
+    if (!cached.promise) {
+        const opts = {
+            bufferCommands: false,
+        };
+        cached.promise = mongoose.connect(MONGO_URI, opts);
+    }
+    try {
+        cached.connection = await cached.promise;
+        cached.connection && console.log("MongoDB connected!");
+    } catch (e) {
+        cached.promise = undefined;
+        throw e;
+    }
+    return cached.connection;
 }

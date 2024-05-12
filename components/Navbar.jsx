@@ -2,7 +2,7 @@ import Logo from "@/public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 
-const Navbar = () => {
+const Navbar = ({ navMenu }) => {
     return (
         <nav>
             <Link href="/">
@@ -15,9 +15,11 @@ const Navbar = () => {
             </Link>
 
             <ul>
-                <li>
-                    <Link href="#">Recommended Places</Link>
-                </li>
+                {navMenu && (
+                    <li>
+                        <Link href="#">Recommended Places</Link>
+                    </li>
+                )}
 
                 <li>
                     <Link href="#">About Us</Link>
@@ -27,15 +29,19 @@ const Navbar = () => {
                     <Link href="#">Contact us</Link>
                 </li>
 
-                <li>
-                    <Link href="/bookings">Bookings</Link>
-                </li>
+                {navMenu && (
+                    <>
+                        <li>
+                            <Link href="/bookings">Bookings</Link>
+                        </li>
 
-                <li>
-                    <Link href="/login" className="login">
-                        Login
-                    </Link>
-                </li>
+                        <li>
+                            <Link href="/login" className="login">
+                                Login
+                            </Link>
+                        </li>
+                    </>
+                )}
             </ul>
         </nav>
     );
