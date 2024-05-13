@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import { connectDB } from "@/service/mongodbConnection";
+import { connectDB } from "@/database/service/mongodbConnection";
 import { Inter } from "next/font/google";
 import "../globals.css";
 

@@ -2,8 +2,9 @@
 
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 
-const SocialLogins = () => {
+const SocialLogins = ({ mode }) => {
     const handleGoogleAuth = () => {
         signIn("google", { callbackUrl: "/" });
     };
@@ -13,6 +14,15 @@ const SocialLogins = () => {
     return (
         <>
             <div className="text-center text-xs text-gray-500">
+                {mode === "register" ? (
+                    <Link className="underline" href="/login">
+                        Login
+                    </Link>
+                ) : (
+                    <Link className="underline" href="/register">
+                        Register
+                    </Link>
+                )}{" "}
                 or Signup with
             </div>
             <div className="flex gap-4">

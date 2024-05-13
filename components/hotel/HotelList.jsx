@@ -1,4 +1,4 @@
-import { getAllHotels } from "@/queries";
+import { getAllHotels } from "@/database/queries";
 import HotelCard from "./HotelCard";
 
 const HotelList = async () => {
