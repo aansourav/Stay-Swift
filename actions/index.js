@@ -11,6 +11,6 @@ export async function login(formData) {
         });
         return response;
     } catch (error) {
-        throw new Error(error);
+        throw Error("Credentials not valid!");
     }
 }

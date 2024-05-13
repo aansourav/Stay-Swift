@@ -13,8 +13,8 @@ const LoginForm = () => {
         try {
             const formData = new FormData(event.currentTarget);
             const response = await login(formData);
-            console.log(response);
             if (!!response.error) {
+                console.log(response.error);
                 setError(response.error);
             } else {
                 router.push("/bookings");
@@ -26,7 +26,9 @@ const LoginForm = () => {
     return (
         <>
             {error && (
-                <div className="text-xl text-red-500 text-center">{error}</div>
+                <div className="text-md text-red-500 font-bold mt-2">
+                    {error}
+                </div>
             )}
             <form className="login-form" onSubmit={onSubmit}>
                 <div>
