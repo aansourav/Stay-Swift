@@ -18,11 +18,9 @@ const Navbar = async ({ navMenu }) => {
             </Link>
 
             <ul>
-                {navMenu && (
-                    <li>
-                        <Link href="#">Recommended Places</Link>
-                    </li>
-                )}
+                <li>
+                    <Link href="#">Recommended Places</Link>
+                </li>
 
                 <li>
                     <Link href="/about">About Us</Link>
@@ -32,13 +30,13 @@ const Navbar = async ({ navMenu }) => {
                     <Link href="/contact">Contact us</Link>
                 </li>
 
-                {navMenu && (
-                    <>
-                        <li>
-                            <Link href="/bookings">Bookings</Link>
-                        </li>
-                    </>
-                )}
+                {/* {(navMenu || session?.user) && (
+                    <> */}
+                <li>
+                    <Link href="/bookings">Bookings</Link>
+                </li>
+                {/* </>
+                )} */}
                 <li>
                     {session?.user ? (
                         <div>
