@@ -3,14 +3,24 @@ const SortHotel = () => {
         <div>
             <h3 className="font-bold text-lg">Sort By</h3>
             <form action="" className="flex flex-col gap-2 mt-2">
-                <label for="highToLow">
-                    <input type="checkbox" name="highToLow" id="highToLow" />
+                <label htmlFor="highToLow">
+                    <input
+                        type="radio"
+                        name="priceOrder"
+                        id="highToLow"
+                        className="mr-2"
+                    />
                     Price High to Low
                 </label>
 
-                <label for="lowToHigh">
-                    <input type="checkbox" name="lowToHigh" id="lowToHigh" />
-                    Price Low to high
+                <label htmlFor="lowToHigh">
+                    <input
+                        type="radio"
+                        name="priceOrder"
+                        id="lowToHigh"
+                        className="mr-2"
+                    />
+                    Price Low to High
                 </label>
             </form>
         </div>
