@@ -25,11 +25,11 @@ const Navbar = async ({ navMenu }) => {
                 )}
 
                 <li>
-                    <Link href="#">About Us</Link>
+                    <Link href="/about">About Us</Link>
                 </li>
 
                 <li>
-                    <Link href="#">Contact us</Link>
+                    <Link href="/contact">Contact us</Link>
                 </li>
 
                 {navMenu && (
@@ -37,24 +37,23 @@ const Navbar = async ({ navMenu }) => {
                         <li>
                             <Link href="/bookings">Bookings</Link>
                         </li>
-
-                        <li>
-                            {session?.user ? (
-                                <div>
-                                    <span className="mx-1 font-semibold">
-                                        {" "}
-                                        {session?.user?.name.split(" ")[0]}{" "}
-                                    </span>
-                                    <Logout />
-                                </div>
-                            ) : (
-                                <Link href="/login" className="login">
-                                    Login
-                                </Link>
-                            )}
-                        </li>
                     </>
                 )}
+                <li>
+                    {session?.user ? (
+                        <div>
+                            <span className="mx-1 font-semibold">
+                                {" "}
+                                {session?.user?.name.split(" ")[0]}{" "}
+                            </span>
+                            <Logout />
+                        </div>
+                    ) : (
+                        <Link href="/login" className="login">
+                            Login
+                        </Link>
+                    )}
+                </li>
             </ul>
         </nav>
     );
