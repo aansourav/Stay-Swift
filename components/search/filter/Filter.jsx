@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import SortHotel from "../../sort/SortHotel";
 import FilterByAmenities from "./FilterByAmenities";
 import FilterByPriceRange from "./FilterByPriceRange";
@@ -10,7 +11,9 @@ const Filter = () => {
                 <SortHotel />
 
                 <FilterByPriceRange />
-                <FilterByStarCategory />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <FilterByStarCategory />
+                </Suspense>
                 <FilterByAmenities />
             </div>
         </>
