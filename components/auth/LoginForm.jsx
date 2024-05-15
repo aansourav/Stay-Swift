@@ -14,7 +14,7 @@ const LoginForm = () => {
             const formData = new FormData(event.currentTarget);
             const response = await login(formData);
             if (!!response.error) {
-                console.log(response.error);
+
                 setError(response.error);
             } else {
                 router.push("/bookings");

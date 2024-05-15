@@ -2,7 +2,11 @@ import Link from "next/link";
 import HotelRating from "./HotelRating";
 import HotelReviewNumber from "./HotelReviewNumber";
 
-const HotelSummaryInfo = ({ fromListPage, hotel }) => {
+const HotelSummaryInfo = ({ fromListPage, hotel, checkin, checkout }) => {
+    let params = "";
+    if (checkin && checkout) {
+        params = `?checkin=${checkin}&checkout=${checkout}`;
+    }
     return (
         <>
             <div className={fromListPage ? "flex-1" : "flex-1 container"}>
@@ -15,10 +19,17 @@ const HotelSummaryInfo = ({ fromListPage, hotel }) => {
                 >
                     {hotel?.name}
                 </h2>
+
                 <p>📍 {hotel?.city}</p>
+
                 <div className="flex gap-2 items-center my-4">
                     <HotelRating id={hotel?.id} />
                     <HotelReviewNumber id={hotel?.id} />
+                    {hotel?.isBooked && (
+                        <span className="bg-red-400 px-2 py-1 text-sm text-white rounded-full">
+                            Booked
+                        </span>
+                    )}
                 </div>
                 <div>
                     <span className="bg-yellow-300 py-1 px-2 rounded-md">
@@ -34,13 +45,18 @@ const HotelSummaryInfo = ({ fromListPage, hotel }) => {
                 <p className=" text-right">Per Night for 4 Rooms</p>
                 {fromListPage ? (
                     <Link
-                        href={`/hotels/${hotel?.id}`}
+                        href={`/hotels/${hotel?.id}${params}`}
                         className="btn-primary "
                     >
                         Details
                     </Link>
                 ) : (
-                    <Link href="" className="btn-primary ">
+                    <Link
+                        href=""
+                        className={`${
+                            hotel?.isBooked ? "btn-disabled" : "btn-primary"
+                        }`}
+                    >
                         Book
                     </Link>
                 )}

@@ -36,7 +36,6 @@ export const {
             },
 
             async authorize(credentials) {
-                console.log(credentials);
                 if (credentials == null) return null;
 
                 try {
