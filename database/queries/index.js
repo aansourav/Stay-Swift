@@ -8,10 +8,8 @@ import {
     replaceMongoIdInArray,
     replaceMongoIdInObject,
 } from "@/utils/data-util";
-import { connectDB } from "../service/mongodbConnection";
 
-export async function getAllHotels(destination, checkin, checkout) {
-    await connectDB();
+export async function getAllHotels(destination, checkin, checkout, category) {
     const regex = new RegExp(destination, "i");
     const hotelsByDestination = await hotelModel
         .find({ city: { $regex: regex } })
@@ -27,10 +25,21 @@ export async function getAllHotels(destination, checkin, checkout) {
 
     let allHotels = hotelsByDestination;
 
+    if (category) {
+        const categoriesToMatch = category.split("|");
+
+        allHotels = allHotels.filter((hotel) => {
+            return categoriesToMatch.includes(
+                hotel.propertyCategory.toString()
+            );
+        });
+    }
+
     if (checkin && checkout) {
         allHotels = await Promise.all(
             allHotels.map(async (hotel) => {
                 const found = await findBooking(hotel._id, checkin, checkout);
+                console.log(found);
                 if (found) {
                     hotel["isBooked"] = true;
                 } else {
